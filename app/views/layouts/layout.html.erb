@@ -38,8 +38,8 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
-
+  <body ng-app="misionApp" ng-controller="CartController as Cart">
+    <%= render 'layouts/cart' %>
     <%= render 'layouts/menu' %>
 
     <div class="main container">
@@ -52,4 +52,6 @@
     </div> <!-- /container -->
     <%= render 'layouts/footer' %>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+
 </html>

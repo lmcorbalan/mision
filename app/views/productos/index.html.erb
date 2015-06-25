@@ -11,80 +11,35 @@
     </div>
 <% end %>
 
-<div id="productos" class="row list-group">
-<% @productos.each do |producto|%>
-    <div class="item col-xs-4 col-lg-4">
+<div id="productos" class="row list-group" ng-controller="ProductosController as ProductosCtrl">
+    
+    <div class="item col-xs-4 col-lg-4" ng-repeat="producto in ProductosCtrl.productos">
       <div class="thumbnail">
         <div class="list-group-image text-center">
-          <a href="" onclick="return false;" data-toggle="popover" data-container="body" data-content="<%= producto.descripcion %>" >
-          <%= image_tag(producto.imagen, style: "height:180px;", size: "180", class: 'group') %>
+          <a href="" onclick="return false;" data-toggle="popover" data-container="body" data-content="{{ producto.descripcion }}" >
+            <img ng-src="{{ producto.imagen.url }}" style="width:180px;height:180px;" width="180" height="180" class="group" />
           </a>
         </div>
         <div class="caption red text-center left">
-          <h4 class="group inner list-group-item-heading"><%= producto.nombre %></h4>
+          <h4 class="group inner list-group-item-heading">{{ producto.nombre }}</h4>
         </div>
         <div class="col-lg-12">
-          <p class="precio brown text-center">precio misión <%= number_to_currency(producto.precio) %></p>
+          <p class="precio brown text-center">precio misión {{ producto.precio | currency:"$" }}</p>
         </div>
         <div class="col-lg-12 v-center">
-          <p class="precio-super red text-center">Precio hiper <%= number_to_currency(producto.precio_super) %></p>
+          <p class="precio-super red text-center">Precio hiper {{ producto.precio_super | currency:"$" }}</p>
         </div>
         <div class="col-lg-12">
-          <p class="ahorro brown text-center">ahorro <%= number_to_percentage(producto.ahorro) %></p>
-        </div>
-        <div class="col-lg-12 text-center">
-          <select class="cantidad">
-            <% for i in 1..producto.cantidad_permitida %>
-              <option value="<%= i %>"><%= i %></option>
-            <% end %>
-          </select>
-          <% if @carrito.producto?(producto.id) %>
-            <%= button_tag(type: 'button', 
-                           class: 'btn btn btn-default', 
-                           data: {
-                             action: 'remove',
-                             productId: producto.id
-                           }) do %>
-                <span class="icon-cart glyphicon-align-left"></span> <span class="cart-action">Eliminar del</span> carro
-            <% end %>
-          <% else %>
-            <%= button_tag(type: 'button', 
-                           class: 'btn btn btn-default', 
-                           data: {
-                            productId: producto.id,
-                            action: 'add'
-                           }) do %>
-                <span class="icon-cart glyphicon-align-left"></span> <span class="cart-action">Agregar al</span> carro
-            <% end %>
-          <% end %>
-        </div>
-        <% if can? [:update, :detele], producto %>
-            <div class="col-lg-12">
-              <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <%= button_to t('.edit', :default => t("helpers.links.edit")),
-                                  edit_producto_path(producto),
-                                  :method => :get,
-                                  :class => 'btn btn-default admin'  %>
-                </div>
-              </div>
-            </div>
-            <% if producto.oculto? %>
-              <div class="oculto">
-                <span>Oculto</span>
-              </div>
-            <% end   %>
-        <% end %>
-        <div class="row">
-
+          <p class="ahorro brown text-center">ahorro {{ producto.ahorro | number:2 }}%</p>
         </div>
       </div>
     </div>
-<% end %>
+
+
 </div>
 
 <script type="text/javascript">
   $(function () {
-  $('[data-toggle="popover"]').popover()
-})
+    $('[data-toggle="popover"]').popover()
+  })
 </script>

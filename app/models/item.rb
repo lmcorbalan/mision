@@ -17,16 +17,27 @@ class Item
   end
 
   def to_json
-    { producto_id: @producto.id, 
-      cantidad: @cantidad,
-      removeUrl: remove_from_cart_path(@producto.id) }
+  { producto_id: @producto.id, 
+    cantidad: @cantidad,
+    removeUrl: remove_from_cart_path(@producto.id) }
   end
 
   def purchase_data
-    { 
-      producto_id: @producto.id, 
-      cantidad: @cantidad,
-      total: total,
-    }
+  { 
+    producto_id: @producto.id, 
+    cantidad: @cantidad,
+    total: total,
+  }
+  end
+
+  def angularData
+  { 
+    id: @producto.id,
+    nombre: @producto.nombre,
+    codigo: @producto.codigo,
+    cantidad: @cantidad,
+    precio: @producto.precio,
+    ahorro: @producto.ahorro
+  }
   end
 end

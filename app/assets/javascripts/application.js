@@ -53,4 +53,57 @@ $(document).ready(function () {
     });
   });
 
+  var app = angular.module('misionApp', []);
+
+  app.controller('CartController', [ '$http', function ($http) {
+      var cart = this;
+      cart.items = [];
+
+      cart.getItems = function() {
+        $http.get('/cart/angular').success(function(data, status, headers, config){
+          cart.items = data;
+        });
+      };
+      cart.getItems();
+
+      cart.addItem = function (item) {
+        cart.items.push({qty: 1, prod_id: item.prod_id, price: item.price, saving: item.saving});
+      };
+
+      cart.removeItem = function (prod_id) {
+        angular.forEach(cart.items, function (item) {
+          if(item.prod_id == prod_id) {
+            console.log(prod_id);
+            var index = $.inArray(item, cart.items);
+            cart.items.splice(index,1);
+            return;
+          }
+        });
+      };
+
+      cart.total = function () {
+        var total = 0;
+        angular.forEach(cart.items, function (item) {
+          total += item.precio * item.cantidad;
+        });
+        return total;
+      };
+
+      cart.savings = function () {
+        return 0;
+      };
+  }]);
+
+  app.controller('ProductosController', [ '$http', function ($http) {
+    var cart = this;
+    cart.productos = [];
+
+    cart.getProductos = function() {
+      $http.get('/productos.json').success(function(data, status, headers, config){
+        cart.productos = data;
+      });
+    };
+    cart.getProductos();
+
+  }]);
 });

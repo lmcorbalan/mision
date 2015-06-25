@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resource :cart, only: [:show] do
     put 'add/:producto_id', to: 'carts#add', as: :add_to
     put 'remove/:producto_id', to: 'carts#remove', as: :remove_from
+    get 'angular', to: 'carts#angular', as: :angular_items
     put 'create_pedido', to: 'carts#create_pedido', as: :create_pedido
   end
 

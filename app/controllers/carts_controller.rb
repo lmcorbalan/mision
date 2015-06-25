@@ -18,6 +18,10 @@ class CartsController < ApplicationController
     render json: @carrito.to_json, status: 200
   end
 
+  def angular
+    render json: @carrito.items.map { |_k,item| item.angularData }.to_json, status: 200
+  end
+
   def create_pedido
     pedido = Pedido.new
     ciclo_id = Compra.ciclo_actual.id

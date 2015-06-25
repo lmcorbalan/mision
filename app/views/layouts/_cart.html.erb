@@ -1,0 +1,47 @@
+<div class="modal fade" role="dialog" tabindex="-1" aria-labelledby="gridSystemModalLabel" id="gridSystemModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Carrito</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Cantidad</th>
+                  <th>Producto</th>
+                  <th>Código</th>
+                  <th>Precio Unit.</th>
+                  <th>Precio Total</th>
+                  <th>Ahorro Total</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in Cart.items">
+                  <td>{{item.cantidad}}</td>
+                  <td>{{item.nombre}}</td>
+                  <td>{{item.codigo}}</td>
+                  <td>{{item.precio}}</td>
+                  <td>{{item.cantidad * item.precio}}</td>
+                  <td>-</td>
+                  <td><button ng-click="Cart.removeItem(item.id)" class="btn btn btn-danger btn-xs">Borrar</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Total: {{Cart.total()}}</p>
+
+          </div><!-- /.row -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <%= link_to 'Completa tu Compra', cart_path, class: 'btn btn-primary' %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

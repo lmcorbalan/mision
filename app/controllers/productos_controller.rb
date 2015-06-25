@@ -16,6 +16,10 @@ class ProductosController < ApplicationController
       @productos = Producto.all.order(:nombre)
     end
     @productos = @productos.disponibles.order(:nombre) if current_usuario.nil? || !current_usuario.admin?
+    respond_to do |format|
+      format.html
+      format.json { render json: @productos, status: 200 }
+    end
   end
 
   # GET /productos/1

@@ -6,9 +6,11 @@
   <ul class="navbar-nav">
       <li class="col-3">Datos de tu compra</li>
       <li class="col-3">Ahorro: <span class="cart-ahorro"><%= number_to_percentage(@carrito.ahorro) %></span></li>
-      <li class="col-3">
-        <span class="cart-total"><%= number_to_currency(@carrito.total) %></span><br>
-        <span class="cart-cantidad"><%= pluralize(@carrito.cantidad, ' producto', ' productos') %></span>
+      <li class="col-3" data-toggle="modal" data-target="bs-example-modal-lg">
+        <a data-toggle="modal" data-target="#gridSystemModal">
+          <span class="cart-total"><%= number_to_currency(@carrito.total) %></span><br>
+          <span class="cart-cantidad"><%= pluralize(@carrito.cantidad, ' producto', ' productos') %></span>
+        </a>
       </li>
       <li class="col-3">
         <%=
@@ -20,6 +22,7 @@
   </ul>
   </div>
 </div>
+
 <nav class="navbar navbar-default menu-categorias">
   <div class="container-fluid submenu">
     <!-- Collect the nav links, forms, and other content for toggling -->
