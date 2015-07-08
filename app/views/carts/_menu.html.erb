@@ -1,29 +1,42 @@
 <style type="text/css">
   body { padding-top: 180px; }
 </style>
-<div class="carrito">
-  <div class="container">
-  <ul class="navbar-nav">
-      <li class="col-3">Datos de tu compra</li>
-      <li class="col-3">Ahorro: <span class="cart-ahorro"><%= number_to_percentage(@carrito.ahorro) %></span></li>
-      <li class="col-3">
-        <span class="cart-total"><%= number_to_currency(@carrito.total) %></span><br>
-        <span class="cart-cantidad"><%= pluralize(@carrito.cantidad, ' producto', ' productos') %></span>
-      </li>
-      <li class="col-4">
-        <% if (controller.controller_name == 'carts') %>
-          <%= link_to(productos_path, class: 'prod-list') do %>
-            <i class="icon-lmcart"></i>Ir a la Tienda
-          <% end %>
-        <% else %>
-          <%= link_to(cart_path, class: 'prod-list') do %>
-            <i class="icon-lmcart"></i>Ver Mi Compra
-          <% end %>
-        <% end %>
-      </li>
-  </ul>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li class="col-3">Datos de tu compra</li>
+          <li class="col-3">Ahorro: <span class="cart-ahorro"><%= number_to_percentage(@carrito.ahorro) %></span></li>
+          <li class="col-3">
+            <span class="cart-total"><%= number_to_currency(@carrito.total) %></span><br>
+            <span class="cart-cantidad"><%= pluralize(@carrito.cantidad, ' producto', ' productos') %></span>
+          </li>
+          <li class="col-4">
+            <% if (controller.controller_name == 'carts') %>
+              <%= link_to(productos_path, class: 'prod-list') do %>
+                <i class="icon-lmcart"></i>Ir a la Tienda
+              <% end %>
+            <% else %>
+              <%= link_to(cart_path, class: 'prod-list') do %>
+                <i class="icon-lmcart"></i>Ver Mi Compra
+              <% end %>
+            <% end %>
+          </li>
+      </ul>
+    </div>
+
   </div>
 </div>
+</nav>
 <nav class="navbar navbar-default menu-categorias">
   <div class="container-fluid submenu">
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -39,7 +39,8 @@ class InitialSeed < SeedMigration::Migration
 
     proveedor = Supplier.create!(name: 'Generico', nature: :wholesaler)
     productos = []
-    img_dir = '/home/deploy/mision/shared/tmp/imagenes/'
+    # img_dir = '/home/deploy/mision/shared/tmp/imagenes/'
+    img_dir = 'tmp/imagenes/'
 
 
     JSON.parse(open("db/json/products.json").read).each do |prod|
