@@ -100,9 +100,15 @@ class CirculosController < ApplicationController
   end
 
   def abandonar
-    authorize! :abandonar_circulo, current_usuario
+    #authorize! :abandonar_circulo, current_usuario
     current_usuario.circulo = nil
+    if current_usuario.coordinador?
+      circulo = Circulo.find(params[:circulo_id])
+      circulo.coordinador_id = nil
+      circulo.save!
+    end
     current_usuario.save!
+
     message = { notice: "Haz abandonado el circulo. Recuerda ingresar en uno antes de hacer tu proximo pedido" }
     redirect_to usuario_path(current_usuario), message
   end

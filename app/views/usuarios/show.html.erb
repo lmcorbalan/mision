@@ -117,10 +117,10 @@
 
           <br/><br/>
 
-          <% if !current_usuario.coordinador? %>
-            <%= link_to 'Abandonar circulo', circulo_abandonar_path(@usuario.circulo), method: :post, data: { confirm: 'Seguro de abandonar el circulo?' }, class: "btn btn-danger btn-xs" %>
-            <br/><br/>
-          <% end %>
+
+          <%= link_to 'Abandonar circulo', circulo_abandonar_path(@usuario.circulo), method: :post, data: { confirm: 'Seguro de abandonar el circulo?' }, class: "btn btn-danger btn-xs" %>
+          <br/><br/>
+
 
 
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta content="text/html" charset="UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+	<h1>Muchas gracias por realizar tú pedido</h1>
+	<table class="table">
+	  <thead>
+	  <tr>
+	    <th>&nbsp;</th>
+	    <th>Producto</th>
+	    <th>Código</th>
+	    <th>Precio Unit.</th>
+	    <th>Precio Total</th>
+	    <th>Ahorro Total</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <% @pedido.items.each do |_producto_id, item| %>
+	    <tr class="cart-item">
+	      <td><%= item.cantidad.to_i %> x</td>
+	      <td><%= item.producto.nombre %></td>
+	      <td><%= item.producto.codigo %></td>
+	      <td><%= number_to_currency(item.producto.precio) %></td>
+	      <td><%= number_to_currency(item.total) %></td>
+	      <td><%= number_to_percentage(item.ahorro) %></td>
+	    </tr>
+	  <%end%>
+	  <tr class="checkout-totales">
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>TOTAL:</td>
+	    <td><span class="cart-total"><%= number_to_currency(@pedido.total) %></span></td>
+	    <td><span class="cart-ahorro"><%= number_to_percentage(@pedido.ahorro) %></span></td>
+	    <td>&nbsp;</td>
+	  </tr>
+	  </tbody>
+	</table>
+
+</body>
+</html>

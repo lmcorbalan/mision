@@ -27,6 +27,7 @@ class CartsController < ApplicationController
     pedido.compra_id = ciclo_id
     respond_to do |format|
       if pedido.save!
+        PedidosMailer.mail_checkout(current_usuario.email, @carrito).deliver
         @carrito.empty!
         format.html { redirect_to root_path, notice: 'Pedido enviado a al coordinador' }
       else

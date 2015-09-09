@@ -2,6 +2,7 @@ class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
   authorize_resource
 
+
   # GET /usuarios
   # GET /usuarios.json
   def index
@@ -78,7 +79,11 @@ class UsuariosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario
-      @usuario = Usuario.find(params[:id])
+      if params[:id]=='sign_up'
+        @usuario = Usuario.find(params[:format])
+      else
+        @usuario = Usuario.find(params[:id])
+      end
     end
 
 
@@ -86,7 +91,7 @@ class UsuariosController < ApplicationController
     def usuario_params
       valid_params = [ :nombre, :apellido, :email, :calle, :codigo_postal,
         :ciudad, :pais, :tel1, :cel1, :type, :"fecha_de_nacimiento(1i)",
-        :"fecha_de_nacimiento(2i)", :"fecha_de_nacimiento(3i)", :password, :password_confirmation]
+        :"fecha_de_nacimiento(2i)", :"fecha_de_nacimiento(3i)"]
       valid_params << :circulo_id if current_usuario && current_usuario.admin?
       filtered_params = params.require(:usuario).permit(valid_params)
     end
