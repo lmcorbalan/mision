@@ -31,11 +31,14 @@ class ProductosController < ApplicationController
     @productos = @productos.disponibles.order(:nombre) if current_usuario.nil? || !current_usuario.admin?
 
     if current_usuario && current_usuario.admin?
-      @todos = Producto.all.order(:nombre)
+      @productos = Producto.all.order(:codigo)
+      render 'productos/index_admin'
+=begin
       respond_to do |format|
         format.html
         format.csv { render csv: @todos.to_csv, type: "text/csv; charset=UTF-8; header=present", filename: "#{Time.now.to_i}_productos" }
       end
+=end
     end
   end
 
@@ -76,7 +79,8 @@ class ProductosController < ApplicationController
     respond_to do |format|
       if @producto.update(producto_params)
         format.html { redirect_to @producto, notice: 'Producto modificado exitosamente..' }
-        format.json { render :show, status: :ok, location: @producto }
+        #format.json { render :show, status: :ok, location: @producto }
+        format.json { head :no_content } # 204 No Content
       else
         format.html { render :edit }
         format.json { render json: @producto.errors, status: :unprocessable_entity }

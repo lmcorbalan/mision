@@ -40,6 +40,9 @@ gem 'paper_trail', '~> 4.0.0.rc'
 gem 'writeexcel'
 # Enable reading settings from yml file
 gem 'figaro'
+# Table editalbe list
+gem 'bootstrap-editable-rails'
+
 
 group :development do
   # Spring speeds up development by keeping your application running in the
