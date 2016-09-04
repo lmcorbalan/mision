@@ -27,3 +27,10 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
+### Dockerize ###
+* Create Dockerfile
+* Create docker-compose.yml
+* $ docker-compose buld
+* $ docker-compose up
+* $ docker-compose run web rake db:drop db:create db:migrate seed:migrate tmp:clear

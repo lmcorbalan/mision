@@ -41,6 +41,8 @@ gem 'writeexcel'
 # Enable reading settings from yml file
 gem 'figaro'
 
+gem 'unicorn', '~> 5.1'
+
 group :development do
   # Spring speeds up development by keeping your application running in the
   # background.
@@ -55,9 +57,10 @@ end
 gem 'capistrano', '~> 3.4.1'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rvm', github: "capistrano/rvm"
+# gem 'capistrano-rvm', github: "capistrano/rvm"
 
 # Google Maps integration
+gem 'coffee-rails'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'nokogiri', '~> 1.3.3'
